@@ -1,7 +1,8 @@
-package com.example.justasimpletodo
+package com.example.justasimpletodo.feature_Todo.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.justasimpletodo.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
