@@ -1,4 +1,4 @@
-package ir.moris.justasimpletodoapp
+package ir.moris.justasimpletodoapp.feature_note.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
