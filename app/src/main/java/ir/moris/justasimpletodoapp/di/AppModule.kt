@@ -10,10 +10,7 @@ import ir.moris.justasimpletodoapp.feature_note.data.data_scource.NoteDatabase
 import ir.moris.justasimpletodoapp.feature_note.data.data_scource.NoteDatabase.Companion.DATABASE_NAME
 import ir.moris.justasimpletodoapp.feature_note.data.repository.NoteRepositoryImpl
 import ir.moris.justasimpletodoapp.feature_note.domain.repository.NoteRepository
-import ir.moris.justasimpletodoapp.feature_note.domain.use_case.AddNote
-import ir.moris.justasimpletodoapp.feature_note.domain.use_case.DeleteNote
-import ir.moris.justasimpletodoapp.feature_note.domain.use_case.GetNotes
-import ir.moris.justasimpletodoapp.feature_note.domain.use_case.NoteUseCases
+import ir.moris.justasimpletodoapp.feature_note.domain.use_case.*
 import javax.inject.Singleton
 
 @Module
@@ -38,7 +35,8 @@ object AppModule {
         return NoteUseCases(
             getNotes = GetNotes(repository),
             deleteNote = DeleteNote(repository),
-            addNote = AddNote(repository)
+            addNote = AddNote(repository),
+            getNote = GetNote(repository)
         )
     }
 }
