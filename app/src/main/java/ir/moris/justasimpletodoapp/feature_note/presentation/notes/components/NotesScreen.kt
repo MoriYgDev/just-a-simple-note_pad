@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import ir.moris.justasimpletodoapp.R
 import ir.moris.justasimpletodoapp.feature_note.presentation.notes.NotesEvent
 import ir.moris.justasimpletodoapp.feature_note.presentation.notes.NotesViewModel
+import ir.moris.justasimpletodoapp.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -31,7 +32,9 @@ fun NotesScreen(
     val scope = rememberCoroutineScope()
 
     Scaffold(floatingActionButton = {
-        FloatingActionButton(onClick = { }, backgroundColor = MaterialTheme.colors.primary) {
+        FloatingActionButton(onClick = {
+            navController.navigate(Screen.AddEditNoteScreen.route)
+        }, backgroundColor = MaterialTheme.colors.primary) {
             Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
         }
     }, scaffoldState = scaffoldState) {
@@ -72,7 +75,7 @@ fun NotesScreen(
                     NoteItem(note = note, modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
-                            //todo
+                            navController.navigate(Screen.AddEditNoteScreen.route + "?noteId=${note.id}&noteColor=${note.color}")
                         }, onDeleteClicked = {
                         viewModel.onEvent(NotesEvent.DeleteNote(note))
                         scope.launch {

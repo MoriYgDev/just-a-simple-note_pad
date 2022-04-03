@@ -1,6 +1,5 @@
 package ir.moris.justasimpletodoapp.feature_note.presentation.add_edit_note.components
 
-import android.widget.Space
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import ir.moris.justasimpletodoapp.R
-import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -44,7 +42,20 @@ fun AddEditNoteScreen(
         Animatable(Color(if (noteColor != -1) noteColor else viewModel.noteColor.value))
     }
     val scope = rememberCoroutineScope()
-
+    LaunchedEffect(key1 = true){
+        viewModel.eventFlow.collectLatest { event ->
+            when(event){
+                is AddEditNoteViewModel.UiEvent.ShowSnackBar ->{
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        message = event.message
+                    )
+                }
+                is AddEditNoteViewModel.UiEvent.SaveNote -> {
+                    navController.navigateUp()
+                }
+            }
+        }
+    }
     
     Scaffold(floatingActionButton = {
         FloatingActionButton(
